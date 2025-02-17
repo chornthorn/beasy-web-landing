@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { CompanyHeader } from "../../components/layout/header";
-import Footer from "../../components/Footer";
+import Header from "../../components/layout/Header";
+import Footer from "../../components/layout/Footer";
 
 const services = [
   {
@@ -211,7 +211,7 @@ const features = [
 const ServicesPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
-      <CompanyHeader />
+      <Header />
 
       <main>
         {/* Hero Section */}

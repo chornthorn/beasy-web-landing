@@ -5,7 +5,6 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { CompanyHeader } from "./components/layout/header";
 import Hero from "./components/Hero";
 import HeroV2 from "./components/HeroV2";
 import HeroV3 from "./components/HeroV3";
@@ -15,7 +14,7 @@ import HeroV9 from "./components/HeroV9";
 import Services from "./components/Services";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import Footer from "./components/layout/Footer";
 import NotFound from "./pages/not-found";
 import ServiceDetail from "./pages/services/detail";
 import ServicesPage from "./pages/services";
@@ -25,6 +24,7 @@ import BlogDetail from "./pages/blog/detail";
 import ContactPage from "./pages/contact";
 import PortfolioPage from "./pages/portfolio";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import Header from "./components/layout/Header";
 
 // Wrapper component to handle scroll restoration
 const ScrollToTop: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -84,7 +84,7 @@ const AppContent: React.FC = () => {
         path="/"
         element={
           <div className="min-h-screen">
-            <CompanyHeader />
+            <Header />
             <main>
               {/* Hero Version Toggle */}
               <div className="fixed bottom-4 right-4 z-50 bg-white rounded-full shadow-lg border border-gray-200 p-2">

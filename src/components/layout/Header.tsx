@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useLanguage } from "../../../contexts/LanguageContext";
+import { useLanguage } from "../../contexts/LanguageContext";
 
-const CompanyHeader: React.FC = () => {
+const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -246,4 +246,4 @@ const CompanyHeader: React.FC = () => {
   );
 };
 
-export default CompanyHeader;
+export default Header;

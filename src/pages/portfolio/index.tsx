@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
-import { CompanyHeader } from "../../components/layout/header";
-import Footer from "../../components/Footer";
+import Header from "../../components/layout/Header";
+import Footer from "../../components/layout/Footer";
 import { projects, categories, Project } from "./data";
 
 const PortfolioPage: React.FC = () => {
@@ -16,7 +15,7 @@ const PortfolioPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <CompanyHeader />
+      <Header />
 
       <main>
         {/* Hero Section */}

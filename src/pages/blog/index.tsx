@@ -1,14 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { CompanyHeader } from "../../components/layout/header";
-import Footer from "../../components/Footer";
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
 import { blogPosts } from "./data";
 
 const BlogPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
-      <CompanyHeader />
+      <Header />
 
       <main>
         {/* Hero Section */}

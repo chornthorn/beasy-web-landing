@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { CompanyHeader } from "../../components/layout/header";
-import Footer from "../../components/Footer";
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
 
 const NotFound: React.FC = () => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const NotFound: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <CompanyHeader />
+      <Header />
 
       <main className="relative overflow-hidden">
         {/* Background Elements */}

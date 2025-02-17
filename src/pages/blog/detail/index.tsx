@@ -6,9 +6,9 @@ import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Components } from "react-markdown";
-import { CompanyHeader } from "../../../components/layout/header";
-import Footer from "../../../components/Footer";
 import { getPostById } from "../data";
+import Footer from "../../../components/layout/Footer";
+import Header from "../../../components/layout/Header";
 
 interface CodeProps {
   node?: any;
@@ -105,7 +105,7 @@ const BlogDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <CompanyHeader />
+      <Header />
 
       <main>
         {/* Hero Section */}
