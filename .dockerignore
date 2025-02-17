@@ -1,0 +1,40 @@
+# Dependencies
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build artifacts
+dist
+build
+.cache
+
+# Development
+.git
+.gitignore
+.env.local
+.env.development
+.env.test
+.env.production
+*.log
+
+# Editor directories and files
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+
+# Testing
+coverage
+__tests__
+*.test.*
+*.spec.*
+
+# Documentation
+README.md
+docs
+
+# Other
+.husky
+.github

@@ -1,0 +1,107 @@
+name: Build and Push Production to ECR
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      push_to_ecr:
+        description: "Push to ECR"
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  build-and-push:
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'push-to-ecr')) ||
+      (github.event_name == 'workflow_dispatch' && inputs.push_to_ecr == true)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Get next version
+        id: get-version
+        run: |
+          # Extract repository name from the full URL
+          FULL_REPO_PATH=$(echo "${{ vars.ECR_REPOSITORY_URL }}" | cut -d'/' -f2-)
+
+          echo "Getting latest version from ECR..."
+          LATEST_VERSION=$(aws ecr describe-images \
+            --repository-name $FULL_REPO_PATH \
+            --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[*]' \
+            --output text | tr '\t' '\n' | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n1 || echo "")
+
+          if [ -z "$LATEST_VERSION" ]; then
+            echo "No existing version found, starting with 1.0.0"
+            IMAGE_TAG="1.0.0"
+          else
+            echo "Latest version found: $LATEST_VERSION"
+            # Split version into parts
+            MAJOR=$(echo $LATEST_VERSION | cut -d. -f1)
+            MINOR=$(echo $LATEST_VERSION | cut -d. -f2)
+            PATCH=$(echo $LATEST_VERSION | cut -d. -f3)
+
+            # Increment patch version
+            PATCH=$((PATCH + 1))
+
+            # If patch reaches 10, increment minor and reset patch
+            if [ $PATCH -eq 10 ]; then
+              MINOR=$((MINOR + 1))
+              PATCH=0
+            fi
+
+            IMAGE_TAG="$MAJOR.$MINOR.$PATCH"
+          fi
+
+          echo "New version will be: $IMAGE_TAG"
+          # Using the new environment file syntax
+          echo "image_tag=${IMAGE_TAG}" >> "$GITHUB_ENV"
+
+      - name: Build and push Docker image
+        env:
+          ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY_URL }}
+        run: |
+          if [ -z "$ECR_REPOSITORY" ]; then
+            echo "Error: ECR_REPOSITORY_URL is not set"
+            exit 1
+          fi
+
+          echo "Build started on $(date)"
+          echo "Building the Docker image..."
+          echo "Repository: $ECR_REPOSITORY"
+          echo "Image tag: ${{ env.image_tag }}"
+
+          # Build the image with build args
+          docker build -t "${ECR_REPOSITORY}:${image_tag}" .
+
+          # Tag as latest
+          docker tag "${ECR_REPOSITORY}:${image_tag}" "${ECR_REPOSITORY}:latest"
+
+          # Push both tags
+          echo "Pushing the Docker images..."
+          docker push "${ECR_REPOSITORY}:${image_tag}"
+          docker push "${ECR_REPOSITORY}:latest"
+
+          echo "Successfully pushed:"
+          echo "  - ${ECR_REPOSITORY}:latest"
+          echo "  - ${ECR_REPOSITORY}:${image_tag}"
+
+      - name: Build Status Notification
+        run: |
+          echo "✅ Docker image was built and pushed to ECR successfully"

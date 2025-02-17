@@ -1,0 +1,101 @@
+name: Create Production Release
+
+permissions:
+  contents: write
+  packages: read
+  pull-requests: write
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Production to ECR"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    if: |
+      github.event.workflow_run.conclusion == 'success' && 
+      github.event.workflow_run.head_branch == 'main'
+
+    permissions:
+      contents: write
+      packages: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Get latest version from ECR
+        run: |
+          FULL_REPO_PATH=$(echo "${{ vars.ECR_REPOSITORY_URL }}" | cut -d'/' -f2-)
+
+          LATEST_VERSION=$(aws ecr describe-images \
+            --repository-name $FULL_REPO_PATH \
+            --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[*]' \
+            --output text | tr '\t' '\n' | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n1)
+
+          if [ -z "$LATEST_VERSION" ]; then
+            echo "Error: No version found in ECR"
+            exit 1
+          fi
+
+          echo "latest_version=${LATEST_VERSION}" >> "$GITHUB_ENV"
+
+      - name: Generate timestamp
+        run: |
+          TIMESTAMP=$(TZ='Asia/Bangkok' date '+%A, %d %B %Y at %H:%M:%S GMT+7')
+          echo "timestamp=${TIMESTAMP}" >> "$GITHUB_ENV"
+
+      - name: Get commit information
+        run: |
+          LAST_COMMIT_AUTHOR=$(git log -1 --pretty=format:'%an')
+          echo "last_commit_author=${LAST_COMMIT_AUTHOR}" >> "$GITHUB_ENV"
+
+          LAST_COMMIT_HASH=$(git log -1 --pretty=format:'%h')
+          echo "last_commit_hash=${LAST_COMMIT_HASH}" >> "$GITHUB_ENV"
+
+          echo "merger_name=${{ github.event.workflow_run.actor.login }}" >> "$GITHUB_ENV"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.latest_version }}
+          name: "Production Release ${{ env.latest_version }}"
+          body: |
+            ## Production Release Details
+
+            **Build Information:**
+            - Version: ${{ env.latest_version }}
+            - Released on: ${{ env.timestamp }}
+            - Environment: Production
+            - Keycloak Version: ${{ env.keycloak_version }}
+            - Notes: This release includes Keycloak ${{ env.keycloak_version }} with custom themes and configurations
+
+            **Commit Information:**
+            - Last Commit by: ${{ env.last_commit_author }} (${{ env.last_commit_hash }})
+            - Released by: @${{ env.merger_name }}
+
+            ---
+            This is an official production release created by GitHub Actions.
+          prerelease: false
+          draft: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release Status Notification
+        run: |
+          echo "✅ Release ${{ env.latest_version }} was created successfully"
