@@ -20,6 +20,7 @@ const Header: React.FC = () => {
     { name: t("nav.services"), href: "/services" },
     { name: t("nav.blog"), href: "/blog" },
     { name: t("nav.portfolio"), href: "/portfolio" },
+    { name: "Career", href: "/career" },
     { name: t("nav.contact"), href: "/contact" },
   ];
 
@@ -44,7 +45,7 @@ const Header: React.FC = () => {
     const baseClasses =
       "text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] tracking-wide";
     return currentLang === "kh"
-      ? `${baseClasses} font-semibold`
+      ? `${baseClasses} font-bold`
       : `${baseClasses} font-medium`;
   };
 
@@ -90,7 +91,7 @@ const Header: React.FC = () => {
             <Link to="/contact">
               <motion.button
                 className={`bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-5 py-2.5 rounded-full text-[15px] tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 shadow-md shadow-[#ff3e3e]/20 ${
-                  currentLang === "kh" ? "font-semibold" : "font-semibold"
+                  currentLang === "kh" ? "font-bold" : "font-semibold"
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -213,7 +214,7 @@ const Header: React.FC = () => {
               <Link to="/contact">
                 <motion.button
                   className={`block w-full bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-3 py-2.5 rounded-full text-[15px] tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 ${
-                    currentLang === "kh" ? "font-semibold" : "font-semibold"
+                    currentLang === "kh" ? "font-bold" : "font-semibold"
                   }`}
                   whileHover={{ x: 4 }}
                 >
