@@ -1,102 +1,182 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const HeroV2: React.FC = () => {
+  // Animation variants for floating effect
+  const floatingAnimation = {
+    initial: { y: 0 },
+    animate: {
+      y: [-10, 10, -10],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  // Animation variants for background shapes
+  const shapeAnimation = {
+    initial: { scale: 0, opacity: 0 },
+    animate: {
+      scale: 1,
+      opacity: 0.3,
+      transition: {
+        duration: 2,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <section className="relative pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
-      <div className="max-w-[1200px] mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
-          {/* Content Column */}
-          <div className="pt-8">
-            <p className="text-blue-600 text-lg mb-6">
-              Stop choosing between affordability and performance!
-            </p>
-            <h1 className="text-[2.75rem] leading-tight font-bold text-gray-900 mb-12">
-              We offer the best prices, while others rely on flashy discounts.
-            </h1>
+    <section className="relative min-h-screen bg-white overflow-hidden">
+      {/* Animated Background Shapes */}
+      <div className="absolute inset-0">
+        {/* Gradient Circle */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{
+            scale: 1,
+            opacity: 0.1,
+            transition: { duration: 2, ease: "easeOut" },
+          }}
+          className="absolute right-0 top-0 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-[#ff6b4a]/30 to-[#ff3e3e]/30 blur-3xl"
+        />
 
-            <div className="space-y-6 text-lg">
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>
-                  More Computing Power for Less -{" "}
-                  <a href="#compare" className="text-blue-600 hover:underline">
-                    See for Yourself
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>
-                  <a href="#support" className="text-blue-600 hover:underline">
-                    Award Winning Support
-                  </a>{" "}
-                  from an actual person
-                </div>
-              </div>
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>
-                  <a
-                    href="#locations"
-                    className="text-blue-600 hover:underline"
-                  >
-                    Global Availability
-                  </a>{" "}
-                  - 9 Regions, 12 Locations
-                </div>
-              </div>
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>99.996% Uptime over the last 12 months</div>
-              </div>
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>German Quality Since 2003</div>
-              </div>
-            </div>
-          </div>
+        {/* Animated Shapes */}
+        {[...Array(5)].map((_, index) => (
+          <motion.div
+            key={index}
+            initial="initial"
+            animate="animate"
+            variants={shapeAnimation}
+            className="absolute bg-gradient-to-br from-[#ff6b4a] to-[#ff3e3e] rounded-full opacity-30"
+            style={{
+              width: Math.random() * 100 + 50,
+              height: Math.random() * 100 + 50,
+              top: `${Math.random() * 100}%`,
+              right: `${Math.random() * 50 + 50}%`,
+              filter: "blur(50px)",
+              animationDelay: `${index * 0.5}s`,
+            }}
+          />
+        ))}
+      </div>
 
-          {/* Card Column */}
-          <div className="relative mt-4">
-            <div className="aspect-[16/10] rounded-2xl overflow-hidden shadow-xl">
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1491002052546-bf38f186af56?auto=format&fit=crop&q=80&w=1200&h=800')`,
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/30" />
+      {/* Main Content */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Text Content */}
+          <div className="space-y-8">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center px-6 py-2 rounded-full bg-gradient-to-r from-[#ff6b4a]/10 to-[#ff3e3e]/10"
+            >
+              <span className="text-sm font-semibold bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent">
+                Welcome to Suntel Technology
+              </span>
+            </motion.div>
 
-              <div className="relative h-full p-8 flex flex-col justify-between">
-                <div className="flex justify-between items-start">
-                  <span className="inline-block bg-red-600 text-white text-sm font-medium px-4 py-1 rounded-full">
-                    Winter Credit Back Gift
-                  </span>
-                </div>
+            {/* Heading */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="space-y-4"
+            >
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900">
+                Transform Your Business with{" "}
+                <span className="bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent">
+                  Innovation
+                </span>
+              </h1>
+            </motion.div>
 
-                <div>
-                  <h2 className="text-white text-5xl font-bold mb-4">
-                    CLOUD VDS
-                  </h2>
-                  <div className="text-white text-2xl font-medium leading-tight mb-6">
-                    Power Up - Credit Back
-                    <br />A Gift That Grows
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-xl text-gray-600 max-w-lg"
+            >
+              We deliver cutting-edge solutions that drive growth, streamline
+              operations, and secure your digital future. Partner with us to
+              bring your vision to life.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <button className="px-8 py-4 bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white rounded-full font-medium text-lg hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 shadow-lg hover:shadow-xl">
+                Get Started
+              </button>
+              <button className="px-8 py-4 bg-white text-gray-900 rounded-full font-medium text-lg border-2 border-gray-200 hover:border-gray-300 transition-all duration-300">
+                Learn More
+              </button>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="grid grid-cols-2 gap-8 pt-8"
+            >
+              {[
+                { number: "15+", label: "Years Experience" },
+                { number: "200+", label: "Projects Delivered" },
+              ].map((stat, index) => (
+                <div key={index} className="text-left">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent mb-1">
+                    {stat.number}
                   </div>
-                  <button className="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 hover:shadow-lg">
-                    Explore Now
-                  </button>
+                  <div className="text-gray-600 text-sm">{stat.label}</div>
                 </div>
-              </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right Column - Image */}
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={floatingAnimation}
+            className="relative lg:h-[600px]"
+          >
+            {/* Main Image */}
+            <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+                alt="Technology Innovation"
+                className="w-full h-full object-cover"
+              />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#ff6b4a]/20 to-transparent" />
             </div>
 
-            <div className="flex justify-center mt-6 space-x-2">
-              <div className="w-2 h-2 rounded-full bg-blue-600"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-            </div>
-          </div>
+            {/* Decorative Elements */}
+            <motion.div
+              animate={{
+                rotate: [0, 360],
+                transition: { duration: 20, repeat: Infinity, ease: "linear" },
+              }}
+              className="absolute top-10 right-10 w-20 h-20 border-4 border-[#ff6b4a]/20 rounded-full"
+            />
+            <motion.div
+              animate={{
+                rotate: [360, 0],
+                transition: { duration: 15, repeat: Infinity, ease: "linear" },
+              }}
+              className="absolute bottom-10 left-10 w-32 h-32 border-4 border-[#ff3e3e]/20 rounded-full"
+            />
+          </motion.div>
         </div>
       </div>
     </section>

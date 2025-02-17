@@ -1,74 +1,71 @@
 import * as React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./components/auth";
-import { HeaderV2 } from "./components/layout/header";
+import { CompanyHeader } from "./components/layout/header";
+import Hero from "./components/Hero";
+import HeroV2 from "./components/HeroV2";
 import HeroV9 from "./components/HeroV9";
-import Features from "./components/Features";
-import Locations from "./components/Locations";
-import Awards from "./components/Awards";
-import DevOps from "./components/DevOps";
-import Reasons from "./components/Reasons";
-import Partners from "./components/Partners";
-import Bestsellers from "./components/Bestsellers";
+import Services from "./components/Services";
+import About from "./components/About";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import CloudVPS from "./pages/compute/cloud-vps";
-import CloudVDS from "./pages/compute/cloud-vds";
-import StorageVPS from "./pages/compute/storage-vps";
-import WindowsVPS from "./pages/compute/windows-vps";
-import CPanelVPS from "./pages/cpanel-vps-server";
-import ObjectStorage from "./pages/object-storage";
-import ObjectStorageOrder from "./pages/object-storage/order";
-import VPSOrder from "./pages/order-vps";
-import VPSOrderReview from "./pages/order-vps/review";
-import Domains from "./pages/domains";
-import Pricing from "./pages/pricing";
-import RegisterPage from "./pages/register";
 import NotFound from "./pages/not-found";
 
 function App() {
-    return (
-        <AuthProvider>
-            <Router>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <div className="min-h-screen">
-                                <HeaderV2 />
-                                <main>
-                                    <HeroV9 />
-                                    <Features />
-                                    <Locations />
-                                    <Awards />
-                                    <DevOps />
-                                    <Reasons />
-                                    <Partners />
-                                    <Bestsellers />
-                                </main>
-                                <Footer />
-                            </div>
-                        }
-                    />
-                    <Route path="/compute/cloud-vps" element={<CloudVPS />} />
-                    <Route path="/compute/cloud-vds" element={<CloudVDS />} />
-                    <Route path="/compute/storage-vps" element={<StorageVPS />} />
-                    <Route path="/compute/windows-vps" element={<WindowsVPS />} />
-                    <Route path="/cpanel-vps-server" element={<CPanelVPS />} />
-                    <Route path="/object-storage" element={<ObjectStorage />} />
-                    <Route
-                        path="/object-storage/order"
-                        element={<ObjectStorageOrder />}
-                    />
-                    <Route path="/order-vps" element={<VPSOrder />} />
-                    <Route path="/order-vps/review" element={<VPSOrderReview />} />
-                    <Route path="/domains" element={<Domains />} />
-                    <Route path="/pricing" element={<Pricing />} />
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </Router>
-        </AuthProvider>
-    );
+  const [heroVersion, setHeroVersion] = React.useState<"v1" | "v2" | "v9">(
+    "v2"
+  );
+
+  const nextVersion = () => {
+    if (heroVersion === "v1") return "v2";
+    if (heroVersion === "v2") return "v9";
+    return "v1";
+  };
+
+  return (
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="min-h-screen">
+              <CompanyHeader />
+              <main>
+                {/* Hero Version Toggle */}
+                <div className="fixed bottom-4 right-4 z-50 bg-white rounded-full shadow-lg border border-gray-200 p-2">
+                  <button
+                    onClick={() => setHeroVersion(nextVersion())}
+                    className="text-sm font-medium text-gray-600 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-1"
+                  >
+                    Switch to Hero{" "}
+                    {heroVersion === "v1"
+                      ? "V2"
+                      : heroVersion === "v2"
+                      ? "V9"
+                      : "V1"}
+                  </button>
+                </div>
+
+                {/* Hero Components */}
+                {heroVersion === "v1" && <Hero />}
+                {heroVersion === "v2" && <HeroV2 />}
+                {heroVersion === "v9" && <HeroV9 />}
+
+                <div id="about">
+                  <About />
+                </div>
+                <div id="services">
+                  <Services />
+                </div>
+                <Contact />
+              </main>
+              <Footer />
+            </div>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

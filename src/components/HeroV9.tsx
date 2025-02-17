@@ -5,26 +5,26 @@ const HeroV9: React.FC = () => {
   const gradients = [
     {
       vertical:
-        "linear-gradient(to bottom, transparent, #60a5fa26, #818cf826, #60a5fa26, transparent)",
+        "linear-gradient(to bottom, transparent, #ff6b4a26, #ff3e3e26, #ff6b4a26, transparent)",
       horizontal:
-        "linear-gradient(to right, transparent, #60a5fa26, #818cf826, #60a5fa26, transparent)",
+        "linear-gradient(to right, transparent, #ff6b4a26, #ff3e3e26, #ff6b4a26, transparent)",
     },
     {
       vertical:
-        "linear-gradient(to bottom, transparent, #3b82f626, #6366f126, #3b82f626, transparent)",
+        "linear-gradient(to bottom, transparent, #ff3e3e26, #ff6b4a26, #ff3e3e26, transparent)",
       horizontal:
-        "linear-gradient(to right, transparent, #3b82f626, #6366f126, #3b82f626, transparent)",
+        "linear-gradient(to right, transparent, #ff3e3e26, #ff6b4a26, #ff3e3e26, transparent)",
     },
     {
       vertical:
-        "linear-gradient(to bottom, transparent, #7c3aed26, #8b5cf626, #7c3aed26, transparent)",
+        "linear-gradient(to bottom, transparent, #ff6b4a26, #ff3e3e26, #ff6b4a26, transparent)",
       horizontal:
-        "linear-gradient(to right, transparent, #7c3aed26, #8b5cf626, #7c3aed26, transparent)",
+        "linear-gradient(to right, transparent, #ff6b4a26, #ff3e3e26, #ff6b4a26, transparent)",
     },
   ];
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#1e1b4b]">
+    <section className="relative min-h-screen overflow-hidden bg-white">
       {/* Grid Lines */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Vertical Lines */}
@@ -83,7 +83,7 @@ const HeroV9: React.FC = () => {
         {[...Array(40)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 md:w-2 md:h-2 bg-[#6a83c9]/30 rounded-full"
+            className="absolute w-1 h-1 md:w-2 md:h-2 bg-[#ff6b4a]/30 rounded-full"
             initial={{
               x: window.innerWidth / 2,
               y: window.innerHeight / 2,
@@ -119,53 +119,54 @@ const HeroV9: React.FC = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-block px-4 py-2 bg-[#312e81] text-white/90 text-sm font-medium rounded-full mb-8"
+              className="inline-block px-4 py-2 bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white text-sm font-medium rounded-full mb-8"
             >
-              Trusted by 200,000+ Customers Worldwide
+              Innovative Technology Solutions
             </motion.div>
 
             <div className="space-y-4 mb-12">
-              <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-                Enterprise-Grade Cloud
+              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
+                Empowering Success
               </h1>
-              <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-                Infrastructure at
+              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
+                Through Technology
               </h1>
-              <h1 className="text-5xl md:text-7xl font-bold text-[#60a5fa] leading-tight">
-                Unbeatable Prices
+              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent leading-tight">
+                Innovation
               </h1>
             </div>
 
-            <p className="text-xl md:text-2xl text-white/80 mb-16 max-w-3xl mx-auto">
-              Experience lightning-fast performance, instant deployment, and
-              24/7 expert support with our state-of-the-art cloud solutions.
+            <p className="text-xl md:text-2xl text-gray-600 mb-16 max-w-3xl mx-auto">
+              At Suntel Technology, we help businesses achieve their goals
+              through custom software development, telecom solutions, and
+              cutting-edge technology.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-[#60a5fa] text-white rounded-full font-medium text-lg hover:bg-[#3b82f6] transition-all duration-300 shadow-lg"
+                className="px-8 py-4 bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white rounded-full font-medium text-lg hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 shadow-lg"
               >
-                Get Started Now
+                Explore Solutions
               </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-[#312e81] text-white rounded-full font-medium text-lg hover:bg-[#1e1b4b] transition-all duration-300"
+                className="px-8 py-4 bg-gray-100 text-gray-900 rounded-full font-medium text-lg hover:bg-gray-200 transition-all duration-300"
               >
-                View Pricing
+                Contact Us
               </motion.button>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 mt-24 max-w-4xl mx-auto">
               {[
-                { number: "400,000+", label: "Servers Running" },
-                { number: "21", label: "Years in Business" },
-                { number: "64", label: "Support Specialists" },
-                { number: "99.99%", label: "Uptime SLA" },
+                { number: "15+", label: "Years Experience" },
+                { number: "200+", label: "Projects Delivered" },
+                { number: "50+", label: "Expert Team Members" },
+                { number: "98%", label: "Client Satisfaction" },
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -174,10 +175,10 @@ const HeroV9: React.FC = () => {
                   transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
                   className="text-center"
                 >
-                  <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                  <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-white/60 text-base">{stat.label}</div>
+                  <div className="text-gray-600 text-base">{stat.label}</div>
                 </motion.div>
               ))}
             </div>

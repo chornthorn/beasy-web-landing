@@ -1,102 +1,125 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
-      <div className="max-w-[1200px] mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
-          {/* Content Column */}
-          <div className="pt-8">
-            <p className="text-blue-600 text-lg mb-6">
-              Stop choosing between affordability and performance!
+    <section className="relative min-h-screen bg-white overflow-hidden">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b4a]/5 via-white to-[#ff3e3e]/5" />
+
+      {/* Background Pattern */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(#ff6b4a10 1px, transparent 1px)`,
+            backgroundSize: "32px 32px",
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+        <div className="text-center max-w-4xl mx-auto">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center px-6 py-2 rounded-full bg-gradient-to-r from-[#ff6b4a]/10 to-[#ff3e3e]/10 mb-8"
+          >
+            <span className="text-sm font-semibold bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent">
+              Welcome to Suntel Technology
+            </span>
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-bold text-gray-900 mb-8"
+          >
+            Transform Your Business with{" "}
+            <span className="bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent">
+              Innovative Technology
+            </span>
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto"
+          >
+            We deliver cutting-edge solutions that drive growth, streamline
+            operations, and secure your digital future. Partner with us to bring
+            your vision to life.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <button className="px-8 py-4 bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white rounded-full font-medium text-lg hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 shadow-lg hover:shadow-xl">
+              Get Started
+            </button>
+            <button className="px-8 py-4 bg-white text-gray-900 rounded-full font-medium text-lg border-2 border-gray-200 hover:border-gray-300 transition-all duration-300">
+              Learn More
+            </button>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+          >
+            {[
+              { number: "15+", label: "Years Experience" },
+              { number: "200+", label: "Projects Delivered" },
+              { number: "50+", label: "Expert Team Members" },
+              { number: "98%", label: "Client Satisfaction" },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                className="text-center"
+              >
+                <div className="text-3xl font-bold bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-gray-600 text-sm">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Trusted By Logos */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="mt-20 pt-20 border-t border-gray-100"
+          >
+            <p className="text-sm text-gray-500 mb-8">
+              Trusted by leading companies worldwide
             </p>
-            <h1 className="text-[2.75rem] leading-tight font-bold text-gray-900 mb-12">
-              We offer the best prices, while others rely on flashy discounts.
-            </h1>
-
-            <div className="space-y-6 text-lg">
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>
-                  More Computing Power for Less -{" "}
-                  <a href="#compare" className="text-blue-600 hover:underline">
-                    See for Yourself
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>
-                  <a href="#support" className="text-blue-600 hover:underline">
-                    Award Winning Support
-                  </a>{" "}
-                  from an actual person
-                </div>
-              </div>
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>
-                  <a
-                    href="#locations"
-                    className="text-blue-600 hover:underline"
-                  >
-                    Global Availability
-                  </a>{" "}
-                  - 9 Regions, 12 Locations
-                </div>
-              </div>
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>99.996% Uptime over the last 12 months</div>
-              </div>
-              <div className="flex items-baseline gap-x-2">
-                <span className="text-2xl text-blue-600 leading-none">•</span>
-                <div>German Quality Since 2003</div>
-              </div>
+            <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
+              {[1, 2, 3, 4, 5].map((_, index) => (
+                <div
+                  key={index}
+                  className="h-8 w-32 bg-gray-200/50 rounded-lg"
+                />
+              ))}
             </div>
-          </div>
-
-          {/* Card Column */}
-          <div className="relative mt-4">
-            <div className="aspect-[16/10] rounded-2xl overflow-hidden shadow-xl">
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1491002052546-bf38f186af56?auto=format&fit=crop&q=80&w=1200&h=800')`,
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/30" />
-
-              <div className="relative h-full p-8 flex flex-col justify-between">
-                <div className="flex justify-between items-start">
-                  <span className="inline-block bg-red-600 text-white text-sm font-medium px-4 py-1 rounded-full">
-                    Winter Credit Back Gift
-                  </span>
-                </div>
-
-                <div>
-                  <h2 className="text-white text-5xl font-bold mb-4">
-                    CLOUD VDS
-                  </h2>
-                  <div className="text-white text-2xl font-medium leading-tight mb-6">
-                    Power Up - Credit Back
-                    <br />A Gift That Grows
-                  </div>
-                  <button className="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 hover:shadow-lg">
-                    Explore Now
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-center mt-6 space-x-2">
-              <div className="w-2 h-2 rounded-full bg-blue-600"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-              <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
