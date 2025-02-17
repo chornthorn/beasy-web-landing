@@ -16,10 +16,10 @@ const CompanyHeader: React.FC = () => {
 
   const navItems = [
     { name: "About", href: "/about" },
-    { name: "Services", href: "#services" },
-    { name: "Solutions", href: "#solutions" },
+    { name: "Services", href: "/services" },
+    { name: "Blog", href: "/blog" },
     { name: "Portfolio", href: "#portfolio" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const languages = {
@@ -63,26 +63,36 @@ const CompanyHeader: React.FC = () => {
                 className="relative"
                 whileHover={{ y: -1 }}
               >
-                <Link
-                  to={item.href}
-                  className="text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] font-medium tracking-wide"
-                >
-                  {item.name}
-                </Link>
+                {item.href.startsWith("#") ? (
+                  <a
+                    href={item.href}
+                    className="text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] font-medium tracking-wide"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] font-medium tracking-wide"
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </motion.div>
             ))}
           </div>
 
           {/* Contact Button and Language Switcher */}
           <div className="hidden md:flex items-center space-x-4">
-            <motion.button
-              onClick={() => (window.location.href = "#contact")}
-              className="bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-5 py-2.5 rounded-full text-[15px] font-semibold tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 shadow-md shadow-[#ff3e3e]/20"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Get in Touch
-            </motion.button>
+            <Link to="/contact">
+              <motion.button
+                className="bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-5 py-2.5 rounded-full text-[15px] font-semibold tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 shadow-md shadow-[#ff3e3e]/20"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Get in Touch
+              </motion.button>
+            </Link>
 
             {/* Language Switcher */}
             <div className="relative">
@@ -189,22 +199,32 @@ const CompanyHeader: React.FC = () => {
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
               <motion.div key={item.name} whileHover={{ x: 4 }}>
-                <Link
-                  to={item.href}
-                  className="block text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-2.5 text-[15px] font-medium tracking-wide"
-                >
-                  {item.name}
-                </Link>
+                {item.href.startsWith("#") ? (
+                  <a
+                    href={item.href}
+                    className="block text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-2.5 text-[15px] font-medium tracking-wide"
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="block text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-2.5 text-[15px] font-medium tracking-wide"
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </motion.div>
             ))}
             <div className="pt-4 space-y-2">
-              <motion.button
-                onClick={() => (window.location.href = "#contact")}
-                className="block w-full bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-3 py-2.5 rounded-full text-[15px] font-semibold tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300"
-                whileHover={{ x: 4 }}
-              >
-                Get in Touch
-              </motion.button>
+              <Link to="/contact">
+                <motion.button
+                  className="block w-full bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-3 py-2.5 rounded-full text-[15px] font-semibold tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300"
+                  whileHover={{ x: 4 }}
+                >
+                  Get in Touch
+                </motion.button>
+              </Link>
 
               {/* Mobile Language Switcher */}
               <div className="flex justify-center space-x-2">

@@ -13,12 +13,16 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import NotFound from "./pages/not-found";
 import ServiceDetail from "./pages/services/detail";
+import ServicesPage from "./pages/services";
 import AboutPage from "./pages/about";
+import BlogPage from "./pages/blog";
+import BlogDetail from "./pages/blog/detail";
+import ContactPage from "./pages/contact";
 
 function App() {
   const [heroVersion, setHeroVersion] = React.useState<
     "v1" | "v2" | "v3" | "v4" | "v5" | "v9"
-  >("v5");
+  >("v2");
 
   const nextVersion = () => {
     if (heroVersion === "v1") return "v2";
@@ -84,8 +88,16 @@ function App() {
         {/* About Page */}
         <Route path="/about" element={<AboutPage />} />
 
-        {/* Service Detail Page */}
+        {/* Services Routes */}
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="/services/:id" element={<ServiceDetail />} />
+
+        {/* Blog Routes */}
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+
+        {/* Contact Page */}
+        <Route path="/contact" element={<ContactPage />} />
 
         {/* 404 Page */}
         <Route path="*" element={<NotFound />} />
