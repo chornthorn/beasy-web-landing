@@ -39,12 +39,23 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
     return (savedLang as Language) || "en";
   });
 
+  // Update data-language attribute when language changes
   useEffect(() => {
+    document.documentElement.setAttribute("data-language", currentLang);
     localStorage.setItem("language", currentLang);
   }, [currentLang]);
 
-  const setLanguage = (lang: Language) => {
+  // Set initial data-language attribute
+  useEffect(() => {
+    document.documentElement.setAttribute("data-language", currentLang);
+  }, []);
+
+  const handleLanguageChange = (lang: Language) => {
+    const scrollPosition = window.scrollY;
     setCurrentLang(lang);
+    requestAnimationFrame(() => {
+      window.scrollTo(0, scrollPosition);
+    });
   };
 
   const t = (key: string): string => {
@@ -54,7 +65,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <LanguageContext.Provider value={{ currentLang, setLanguage, t }}>
+    <LanguageContext.Provider
+      value={{ currentLang, setLanguage: handleLanguageChange, t }}
+    >
       {children}
     </LanguageContext.Provider>
   );

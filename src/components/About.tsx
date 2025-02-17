@@ -151,35 +151,6 @@ const About: React.FC = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Learn More Link */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="text-center mt-12"
-        >
-          <Link
-            to="/about"
-            className="inline-flex items-center text-[#ff6b4a] font-semibold hover:text-[#ff3e3e] transition-colors duration-300 group"
-          >
-            Learn More About Us
-            <svg
-              className="w-5 h-5 ml-2 transform transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </Link>
-        </motion.div>
       </div>
     </section>
   );

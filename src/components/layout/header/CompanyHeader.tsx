@@ -39,6 +39,15 @@ const CompanyHeader: React.FC = () => {
     setIsLangOpen(false);
   };
 
+  // Function to get font weight class based on language
+  const getNavItemClass = () => {
+    const baseClasses =
+      "text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] tracking-wide";
+    return currentLang === "kh"
+      ? `${baseClasses} font-semibold`
+      : `${baseClasses} font-medium`;
+  };
+
   return (
     <motion.header
       style={{
@@ -69,10 +78,7 @@ const CompanyHeader: React.FC = () => {
                 className="relative"
                 whileHover={{ y: -1 }}
               >
-                <Link
-                  to={item.href}
-                  className="text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] font-medium tracking-wide"
-                >
+                <Link to={item.href} className={getNavItemClass()}>
                   {item.name}
                 </Link>
               </motion.div>
@@ -83,7 +89,9 @@ const CompanyHeader: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/contact">
               <motion.button
-                className="bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-5 py-2.5 rounded-full text-[15px] font-semibold tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 shadow-md shadow-[#ff3e3e]/20"
+                className={`bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-5 py-2.5 rounded-full text-[15px] tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 shadow-md shadow-[#ff3e3e]/20 ${
+                  currentLang === "kh" ? "font-semibold" : "font-semibold"
+                }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -195,7 +203,7 @@ const CompanyHeader: React.FC = () => {
               <motion.div key={item.name} whileHover={{ x: 4 }}>
                 <Link
                   to={item.href}
-                  className="block text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-2.5 text-[15px] font-medium tracking-wide"
+                  className={`block px-3 py-2.5 ${getNavItemClass()}`}
                 >
                   {item.name}
                 </Link>
@@ -204,7 +212,9 @@ const CompanyHeader: React.FC = () => {
             <div className="pt-4 space-y-2">
               <Link to="/contact">
                 <motion.button
-                  className="block w-full bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-3 py-2.5 rounded-full text-[15px] font-semibold tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300"
+                  className={`block w-full bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-3 py-2.5 rounded-full text-[15px] tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 ${
+                    currentLang === "kh" ? "font-semibold" : "font-semibold"
+                  }`}
                   whileHover={{ x: 4 }}
                 >
                   {t("cta.getInTouch")}
