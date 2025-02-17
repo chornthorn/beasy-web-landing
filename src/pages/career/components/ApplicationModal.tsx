@@ -8,6 +8,9 @@ interface ApplicationModalProps {
   job: JobPosting | null;
 }
 
+const inputClasses =
+  "w-full px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#ff6b4a] focus:border-[#ff6b4a] transition-colors duration-300";
+
 const ApplicationModal: React.FC<ApplicationModalProps> = ({
   isOpen,
   onClose,
@@ -80,7 +83,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({
                           type="text"
                           id="firstName"
                           required
-                          className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-[#ff6b4a] focus:ring-2 focus:ring-[#ff6b4a]/20 transition-colors duration-300"
+                          className={inputClasses}
                         />
                       </div>
                       <div>
@@ -94,7 +97,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({
                           type="text"
                           id="lastName"
                           required
-                          className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-[#ff6b4a] focus:ring-2 focus:ring-[#ff6b4a]/20 transition-colors duration-300"
+                          className={inputClasses}
                         />
                       </div>
                     </div>
@@ -109,7 +112,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({
                         type="email"
                         id="email"
                         required
-                        className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-[#ff6b4a] focus:ring-2 focus:ring-[#ff6b4a]/20 transition-colors duration-300"
+                        className={inputClasses}
                       />
                     </div>
                     <div>
@@ -119,11 +122,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({
                       >
                         Phone Number
                       </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        className="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-[#ff6b4a] focus:ring-2 focus:ring-[#ff6b4a]/20 transition-colors duration-300"
-                      />
+                      <input type="tel" id="phone" className={inputClasses} />
                     </div>
                   </div>
 
@@ -132,7 +131,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({
                     <h4 className="text-lg font-semibold text-gray-900">
                       Resume/CV
                     </h4>
-                    <div className="border-2 border-dashed border-gray-200 rounded-xl p-6">
+                    <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 focus-within:border-[#ff6b4a] transition-colors duration-300">
                       <div className="text-center">
                         <svg
                           className="mx-auto h-12 w-12 text-gray-400"
