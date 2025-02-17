@@ -18,6 +18,8 @@ import AboutPage from "./pages/about";
 import BlogPage from "./pages/blog";
 import BlogDetail from "./pages/blog/detail";
 import ContactPage from "./pages/contact";
+import PortfolioPage from "./pages/portfolio";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 function App() {
   const [heroVersion, setHeroVersion] = React.useState<
@@ -34,75 +36,80 @@ function App() {
   };
 
   return (
-    <Router>
-      <Routes>
-        {/* Home Page */}
-        <Route
-          path="/"
-          element={
-            <div className="min-h-screen">
-              <CompanyHeader />
-              <main>
-                {/* Hero Version Toggle */}
-                <div className="fixed bottom-4 right-4 z-50 bg-white rounded-full shadow-lg border border-gray-200 p-2">
-                  <button
-                    onClick={() => setHeroVersion(nextVersion())}
-                    className="text-sm font-medium text-gray-600 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-1"
-                  >
-                    Switch to Hero{" "}
-                    {heroVersion === "v1"
-                      ? "V2"
-                      : heroVersion === "v2"
-                      ? "V3"
-                      : heroVersion === "v3"
-                      ? "V4"
-                      : heroVersion === "v4"
-                      ? "V5"
-                      : heroVersion === "v5"
-                      ? "V9"
-                      : "V1"}
-                  </button>
-                </div>
+    <LanguageProvider>
+      <Router>
+        <Routes>
+          {/* Home Page */}
+          <Route
+            path="/"
+            element={
+              <div className="min-h-screen">
+                <CompanyHeader />
+                <main>
+                  {/* Hero Version Toggle */}
+                  <div className="fixed bottom-4 right-4 z-50 bg-white rounded-full shadow-lg border border-gray-200 p-2">
+                    <button
+                      onClick={() => setHeroVersion(nextVersion())}
+                      className="text-sm font-medium text-gray-600 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-1"
+                    >
+                      Switch to Hero{" "}
+                      {heroVersion === "v1"
+                        ? "V2"
+                        : heroVersion === "v2"
+                        ? "V3"
+                        : heroVersion === "v3"
+                        ? "V4"
+                        : heroVersion === "v4"
+                        ? "V5"
+                        : heroVersion === "v5"
+                        ? "V9"
+                        : "V1"}
+                    </button>
+                  </div>
 
-                {/* Hero Components */}
-                {heroVersion === "v1" && <Hero />}
-                {heroVersion === "v2" && <HeroV2 />}
-                {heroVersion === "v3" && <HeroV3 />}
-                {heroVersion === "v4" && <HeroV4 />}
-                {heroVersion === "v5" && <HeroV5 />}
-                {heroVersion === "v9" && <HeroV9 />}
+                  {/* Hero Components */}
+                  {heroVersion === "v1" && <Hero />}
+                  {heroVersion === "v2" && <HeroV2 />}
+                  {heroVersion === "v3" && <HeroV3 />}
+                  {heroVersion === "v4" && <HeroV4 />}
+                  {heroVersion === "v5" && <HeroV5 />}
+                  {heroVersion === "v9" && <HeroV9 />}
 
-                <div id="about">
-                  <About />
-                </div>
-                <div id="services">
-                  <Services />
-                </div>
-                <Contact />
-              </main>
-              <Footer />
-            </div>
-          }
-        />
+                  <div id="about">
+                    <About />
+                  </div>
+                  <div id="services">
+                    <Services />
+                  </div>
+                  <Contact />
+                </main>
+                <Footer />
+              </div>
+            }
+          />
 
-        {/* About Page */}
-        <Route path="/about" element={<AboutPage />} />
+          {/* About Page */}
+          <Route path="/about" element={<AboutPage />} />
 
-        {/* Services Routes */}
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/services/:id" element={<ServiceDetail />} />
+          {/* Services Routes */}
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:id" element={<ServiceDetail />} />
 
-        {/* Blog Routes */}
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:id" element={<BlogDetail />} />
+          {/* Blog Routes */}
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
 
-        {/* Contact Page */}
-        <Route path="/contact" element={<ContactPage />} />
+          {/* Portfolio Page */}
+          <Route path="/portfolio" element={<PortfolioPage />} />
 
-        {/* 404 Page */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+          {/* Contact Page */}
+          <Route path="/contact" element={<ContactPage />} />
+
+          {/* 404 Page */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </LanguageProvider>
   );
 }
 

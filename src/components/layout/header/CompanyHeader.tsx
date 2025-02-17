@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useLanguage } from "../../../contexts/LanguageContext";
 
 const CompanyHeader: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState<"en" | "kh">("en");
   const { scrollY } = useScroll();
+  const { currentLang, setLanguage, t } = useLanguage();
 
   const backgroundColor = useTransform(
     scrollY,
@@ -15,11 +16,11 @@ const CompanyHeader: React.FC = () => {
   );
 
   const navItems = [
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Blog", href: "/blog" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Contact", href: "/contact" },
+    { name: t("nav.about"), href: "/about" },
+    { name: t("nav.services"), href: "/services" },
+    { name: t("nav.blog"), href: "/blog" },
+    { name: t("nav.portfolio"), href: "/portfolio" },
+    { name: t("nav.contact"), href: "/contact" },
   ];
 
   const languages = {
@@ -31,6 +32,11 @@ const CompanyHeader: React.FC = () => {
       name: "ខ្មែរ",
       flag: "🇰🇭",
     },
+  };
+
+  const handleLanguageChange = (lang: "en" | "kh") => {
+    setLanguage(lang);
+    setIsLangOpen(false);
   };
 
   return (
@@ -63,21 +69,12 @@ const CompanyHeader: React.FC = () => {
                 className="relative"
                 whileHover={{ y: -1 }}
               >
-                {item.href.startsWith("#") ? (
-                  <a
-                    href={item.href}
-                    className="text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] font-medium tracking-wide"
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <Link
-                    to={item.href}
-                    className="text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] font-medium tracking-wide"
-                  >
-                    {item.name}
-                  </Link>
-                )}
+                <Link
+                  to={item.href}
+                  className="text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] font-medium tracking-wide"
+                >
+                  {item.name}
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -90,7 +87,7 @@ const CompanyHeader: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get in Touch
+                {t("cta.getInTouch")}
               </motion.button>
             </Link>
 
@@ -134,10 +131,7 @@ const CompanyHeader: React.FC = () => {
                   {Object.entries(languages).map(([code, lang]) => (
                     <button
                       key={code}
-                      onClick={() => {
-                        setCurrentLang(code as "en" | "kh");
-                        setIsLangOpen(false);
-                      }}
+                      onClick={() => handleLanguageChange(code as "en" | "kh")}
                       className={`w-full px-4 py-2 text-left flex items-center space-x-2 hover:bg-gray-50 transition-colors duration-200 ${
                         currentLang === code
                           ? "text-[#ff6b4a]"
@@ -199,21 +193,12 @@ const CompanyHeader: React.FC = () => {
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
               <motion.div key={item.name} whileHover={{ x: 4 }}>
-                {item.href.startsWith("#") ? (
-                  <a
-                    href={item.href}
-                    className="block text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-2.5 text-[15px] font-medium tracking-wide"
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <Link
-                    to={item.href}
-                    className="block text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-2.5 text-[15px] font-medium tracking-wide"
-                  >
-                    {item.name}
-                  </Link>
-                )}
+                <Link
+                  to={item.href}
+                  className="block text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-2.5 text-[15px] font-medium tracking-wide"
+                >
+                  {item.name}
+                </Link>
               </motion.div>
             ))}
             <div className="pt-4 space-y-2">
@@ -222,7 +207,7 @@ const CompanyHeader: React.FC = () => {
                   className="block w-full bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white px-3 py-2.5 rounded-full text-[15px] font-semibold tracking-wide hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300"
                   whileHover={{ x: 4 }}
                 >
-                  Get in Touch
+                  {t("cta.getInTouch")}
                 </motion.button>
               </Link>
 
@@ -231,7 +216,7 @@ const CompanyHeader: React.FC = () => {
                 {Object.entries(languages).map(([code, lang]) => (
                   <button
                     key={code}
-                    onClick={() => setCurrentLang(code as "en" | "kh")}
+                    onClick={() => handleLanguageChange(code as "en" | "kh")}
                     className={`flex items-center space-x-1 px-3 py-2 rounded-full border-2 transition-colors duration-300 ${
                       currentLang === code
                         ? "border-[#ff6b4a] text-[#ff6b4a]"
