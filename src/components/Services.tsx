@@ -1,9 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Services: React.FC = () => {
   const services = [
     {
+      id: "custom-software",
       title: "Custom Software",
       description:
         "Enterprise-grade custom software solutions designed to streamline your business operations and drive growth.",
@@ -26,6 +28,7 @@ const Services: React.FC = () => {
       ),
     },
     {
+      id: "cloud-solutions",
       title: "Cloud Solutions",
       description:
         "Scalable cloud infrastructure designed for modern applications and enterprise workloads.",
@@ -48,6 +51,7 @@ const Services: React.FC = () => {
       ),
     },
     {
+      id: "ai-services",
       title: "AI Services",
       description:
         "Advanced AI solutions that power intelligent decision-making and business process automation.",
@@ -70,6 +74,7 @@ const Services: React.FC = () => {
       ),
     },
     {
+      id: "analytics",
       title: "Analytics",
       description:
         "Real-time analytics and insights to drive data-informed business decisions and strategies.",
@@ -92,6 +97,7 @@ const Services: React.FC = () => {
       ),
     },
     {
+      id: "security",
       title: "Security",
       description:
         "Enterprise-grade security features and solutions to protect your digital assets and data.",
@@ -114,6 +120,7 @@ const Services: React.FC = () => {
       ),
     },
     {
+      id: "team-solutions",
       title: "Team Solutions",
       description:
         "Collaborative tools and features designed for seamless enterprise team coordination.",
@@ -171,20 +178,40 @@ const Services: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div className="bg-white rounded-2xl p-8 h-full border border-gray-200 transition-all duration-300 hover:border-gray-300 hover:shadow-lg hover:scale-[1.02] group">
-                {/* Icon */}
-                <div className="mb-6">{service.icon}</div>
+              <Link to={`/services/${service.id}`} className="block">
+                <div className="bg-white rounded-2xl p-8 h-full border border-gray-200 transition-all duration-300 hover:border-gray-300 hover:shadow-lg hover:scale-[1.02]">
+                  {/* Icon */}
+                  <div className="mb-6">{service.icon}</div>
 
-                {/* Title */}
-                <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors duration-300 group-hover:text-gray-800">
-                  {service.title}
-                </h3>
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 transition-colors duration-300 group-hover:text-gray-800">
+                    {service.title}
+                  </h3>
 
-                {/* Description */}
-                <p className="text-gray-600 transition-colors duration-300 group-hover:text-gray-700">
-                  {service.description}
-                </p>
-              </div>
+                  {/* Description */}
+                  <p className="text-gray-600 transition-colors duration-300 group-hover:text-gray-700">
+                    {service.description}
+                  </p>
+
+                  {/* Learn More Link */}
+                  <div className="mt-6 flex items-center text-[#ff6b4a] font-medium">
+                    Learn More
+                    <svg
+                      className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>
