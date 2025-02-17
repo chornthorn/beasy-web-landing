@@ -15,7 +15,7 @@ const CompanyHeader: React.FC = () => {
   );
 
   const navItems = [
-    { name: "About", href: "#about" },
+    { name: "About", href: "/about" },
     { name: "Services", href: "#services" },
     { name: "Solutions", href: "#solutions" },
     { name: "Portfolio", href: "#portfolio" },

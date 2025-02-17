@@ -157,10 +157,7 @@ const HeroV2: React.FC = () => {
                 alt="Technology Innovation"
                 className="w-full h-full object-cover"
               />
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#ff6b4a]/20 to-transparent" />
             </div>
-
             {/* Decorative Elements */}
             <motion.div
               animate={{
