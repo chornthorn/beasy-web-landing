@@ -43,11 +43,9 @@ const Header: React.FC = () => {
 
   const navItems = [
     { name: t("nav.about"), href: "/about" },
-    { name: t("nav.services"), href: "/services" },
     { name: t("nav.blog"), href: "/blog" },
     { name: t("nav.portfolio"), href: "/portfolio" },
     { name: "Career", href: "/career" },
-    { name: t("nav.contact"), href: "/contact" },
   ];
 
   const languages = {

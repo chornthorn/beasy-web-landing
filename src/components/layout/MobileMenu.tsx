@@ -52,7 +52,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
       transition={{ duration: 0.2 }}
     >
       <div className="px-2 pt-2 pb-3 space-y-1">
-        {/* Mobile Products Menu */}
+        {/* Products Menu */}
         <div className="py-2">
           <button
             onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
@@ -102,6 +102,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           )}
         </div>
 
+        {/* Navigation Items */}
         {navItems.map((item) => (
           <motion.div key={item.name} whileHover={{ x: 4 }}>
             <Link
@@ -112,6 +113,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             </Link>
           </motion.div>
         ))}
+
+        {/* Get in Touch Button */}
         <div className="pt-4 space-y-2">
           <Link to="/contact">
             <motion.button
@@ -124,7 +127,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             </motion.button>
           </Link>
 
-          {/* Mobile Language Switcher */}
+          {/* Language Switcher */}
           <div className="flex justify-center space-x-2">
             {Object.entries(languages).map(([code, lang]) => (
               <button
