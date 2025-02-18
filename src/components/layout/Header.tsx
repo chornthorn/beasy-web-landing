@@ -85,7 +85,7 @@ const Header: React.FC = () => {
           duration: 0.3,
           ease: "easeInOut",
         }}
-        className="fixed w-full top-0 z-50 shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] bg-white"
+        className="fixed w-full top-0 z-[1000] shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] bg-white"
       >
         <nav className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-20">
@@ -168,7 +168,7 @@ const Header: React.FC = () => {
       {/* Overlay for mega menu */}
       {isMegaMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/20 z-40"
+          className="fixed inset-0 bg-black/20 z-[90]"
           onClick={() => setIsMegaMenuOpen(false)}
         />
       )}

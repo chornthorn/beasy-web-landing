@@ -78,18 +78,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           {isMegaMenuOpen && (
             <div className="mt-2 space-y-4 px-4">
               {productCategories.map((category) => (
-                <div key={category.title} className="mb-4">
-                  <h3 className="text-[#ff6b4a] font-bold text-lg mb-2">
+                <div key={category.title} className="mb-4 group">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 transition-colors duration-300 group-hover:text-[#ff6b4a]">
                     {category.title}
                   </h3>
                   <ul className="space-y-2">
                     {category.items.map((item) => (
                       <li key={item.name}>
-                        <Link to={item.href} className="block py-2">
-                          <div className="text-gray-900 font-medium">
+                        <Link to={item.href} className="block py-2 group">
+                          <div className="text-gray-900 font-medium group-hover:text-[#ff6b4a] transition-colors duration-300">
                             {item.name}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-sm text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
                             {item.description}
                           </div>
                         </Link>

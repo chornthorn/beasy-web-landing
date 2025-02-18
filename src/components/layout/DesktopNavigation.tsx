@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ProductCategory } from "../../data/productCategories";
@@ -22,43 +22,15 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
   navItems,
   getNavItemClass,
 }) => {
-  const [isHovering, setIsHovering] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleMouseLeave = (e: MouseEvent) => {
-      const headerHeight = 80; // Header height
-      const mouseY = e.clientY;
-
-      // Close mega menu if mouse moves above header or below mega menu area
-      if (mouseY < 0 || mouseY > headerHeight + 400) {
-        // 400px is approximate mega menu height
-        setIsMegaMenuOpen(false);
-      }
-    };
-
-    if (isMegaMenuOpen) {
-      document.addEventListener("mousemove", handleMouseLeave);
-    }
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseLeave);
-    };
-  }, [isMegaMenuOpen, setIsMegaMenuOpen]);
-
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-    setIsMegaMenuOpen(true);
-  };
-
   return (
-    <div className="hidden md:flex items-center space-x-10" ref={menuRef}>
+    <div className="hidden md:flex items-center space-x-10">
       {/* Products Menu */}
-      <div className="relative group">
-        <button
-          onMouseEnter={handleMouseEnter}
-          className={`flex items-center space-x-1 ${getNavItemClass()}`}
-        >
+      <div
+        className="relative"
+        onMouseEnter={() => setIsMegaMenuOpen(true)}
+        onMouseLeave={() => setIsMegaMenuOpen(false)}
+      >
+        <button className={`flex items-center space-x-1 ${getNavItemClass()}`}>
           <span>Products</span>
           <svg
             className={`w-4 h-4 transition-transform duration-200 ${
@@ -77,17 +49,14 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
           </svg>
         </button>
 
+        {/* Mega Menu */}
         <MegaMenu
           isOpen={isMegaMenuOpen}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => {
-            setIsHovering(false);
-            setIsMegaMenuOpen(false);
-          }}
           productCategories={productCategories}
         />
       </div>
 
+      {/* Navigation Items */}
       {navItems.map((item) => (
         <motion.div key={item.name} className="relative" whileHover={{ y: -1 }}>
           <Link to={item.href} className={getNavItemClass()}>
