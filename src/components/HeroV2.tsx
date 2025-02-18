@@ -64,7 +64,7 @@ const HeroV2: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-44 pt-36 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
           <div className="space-y-8">
