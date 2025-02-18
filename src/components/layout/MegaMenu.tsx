@@ -17,10 +17,10 @@ const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, productCategories }) => {
           <div className="absolute h-4 inset-x-0 -bottom-4" />
 
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-[95]"
             style={{ top: "80px" }}
           >
