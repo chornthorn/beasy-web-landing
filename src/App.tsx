@@ -20,7 +20,9 @@ import BlogDetail from "./pages/blog/detail";
 import ContactPage from "./pages/contact";
 import PortfolioPage from "./pages/portfolio";
 import CareerPage from "./pages/career";
+import PrivacyPolicy from "./pages/privacy";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import CookieConsent from "./components/CookieConsent";
 
 function App() {
   const [heroVersion, setHeroVersion] = React.useState<
@@ -48,7 +50,7 @@ function App() {
                 <Header />
                 <main>
                   {/* Hero Version Toggle */}
-                  <div className="fixed bottom-4 right-4 z-50 bg-white rounded-full shadow-lg border border-gray-200 p-2">
+                  <div className="fixed bottom-4 right-4 z-40 bg-white rounded-full shadow-lg border border-gray-200 p-2">
                     <button
                       onClick={() => setHeroVersion(nextVersion())}
                       className="text-sm font-medium text-gray-600 hover:text-[#ff6b4a] transition-colors duration-300 px-3 py-1"
@@ -109,9 +111,13 @@ function App() {
           {/* Contact Page */}
           <Route path="/contact" element={<ContactPage />} />
 
+          {/* Privacy Policy Page */}
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+
           {/* 404 Page */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <CookieConsent />
       </Router>
     </LanguageProvider>
   );
