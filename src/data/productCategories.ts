@@ -11,77 +11,79 @@ export interface ProductCategory {
 
 const productCategories: ProductCategory[] = [
   {
-    title: "Compute",
+    title: "5G Solutions",
     items: [
       {
-        name: "Cloud VPS",
-        description: "Virtual Private Servers with NVMe storage",
-        href: "/products/cloud-vps",
+        name: "5G Network Infrastructure",
+        description: "Enterprise-grade 5G network deployment and management",
+        href: "/products/5g-infrastructure",
       },
       {
-        name: "Cloud VDS",
-        description: "Virtual Dedicated Servers with dedicated resources",
-        href: "/products/cloud-vds",
+        name: "Private 5G Networks",
+        description: "Dedicated 5G networks for industrial and enterprise use",
+        href: "/products/private-5g",
       },
       {
-        name: "Storage VPS",
-        description: "High-storage Virtual Private Servers",
-        href: "/products/storage-vps",
+        name: "Edge Computing",
+        description:
+          "5G-enabled edge computing solutions for low-latency applications",
+        href: "/products/edge-computing",
       },
       {
-        name: "Windows VPS",
-        description: "Windows-based Virtual Private Servers",
-        href: "/products/windows-vps",
+        name: "IoT Connectivity",
+        description: "5G IoT solutions for smart devices and sensors",
+        href: "/products/iot-connectivity",
       },
     ],
   },
   {
-    title: "Storage",
+    title: "Communication",
     items: [
       {
-        name: "Object Storage",
-        description: "Scalable object storage solution",
-        href: "/products/object-storage",
+        name: "Business Chat",
+        description:
+          "Secure enterprise messaging platform with team collaboration features",
+        href: "/products/business-chat",
       },
       {
-        name: "Block Storage",
-        description: "High-performance block storage",
-        href: "/products/block-storage",
+        name: "Video Conferencing",
+        description: "HD video meetings with screen sharing and recording",
+        href: "/products/video-conferencing",
       },
       {
-        name: "Backup Storage",
-        description: "Reliable backup storage solutions",
-        href: "/products/backup-storage",
+        name: "Voice Solutions",
+        description: "VoIP and cloud telephony services for business",
+        href: "/products/voice-solutions",
       },
       {
-        name: "CDN",
-        description: "Content Delivery Network",
-        href: "/products/cdn",
+        name: "Unified Messaging",
+        description: "Integrated SMS, email, and chat platform",
+        href: "/products/unified-messaging",
       },
     ],
   },
   {
-    title: "Hosting",
+    title: "Enterprise Solutions",
     items: [
       {
-        name: "cPanel VPS",
-        description: "VPS with cPanel control panel",
-        href: "/products/cpanel-vps",
+        name: "Call Center Suite",
+        description: "Complete contact center solution with analytics",
+        href: "/products/call-center",
       },
       {
-        name: "Domain Names",
-        description: "Domain registration and management",
-        href: "/products/domains",
+        name: "Network Security",
+        description: "Advanced security for 5G and communication networks",
+        href: "/products/network-security",
       },
       {
-        name: "Web Hosting",
-        description: "Reliable web hosting solutions",
-        href: "/products/web-hosting",
+        name: "Analytics Platform",
+        description: "Network and communication insights platform",
+        href: "/products/analytics",
       },
       {
-        name: "Email Hosting",
-        description: "Professional email hosting",
-        href: "/products/email-hosting",
+        name: "API Integration",
+        description: "Communication APIs for developers and businesses",
+        href: "/products/api-integration",
       },
     ],
   },
