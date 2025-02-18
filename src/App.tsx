@@ -21,6 +21,7 @@ import ContactPage from "./pages/contact";
 import PortfolioPage from "./pages/portfolio";
 import CareerPage from "./pages/career";
 import PrivacyPolicy from "./pages/privacy";
+import WelcomePage from "./pages/welcome";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import CookieConsent from "./components/CookieConsent";
 
@@ -90,6 +91,9 @@ function App() {
               </div>
             }
           />
+
+          {/* Welcome Page */}
+          <Route path="/welcome" element={<WelcomePage />} />
 
           {/* About Page */}
           <Route path="/about" element={<AboutPage />} />
