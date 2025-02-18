@@ -20,7 +20,7 @@ const PortfolioPage: React.FC = () => {
       <main>
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-br from-[#ff6b4a]/5 via-white to-[#ff3e3e]/5">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
             <div className="text-center max-w-3xl mx-auto">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}

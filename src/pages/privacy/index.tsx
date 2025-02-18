@@ -6,10 +6,14 @@ const PrivacyPolicy: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <main className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8 mt-16">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">
           Privacy Policy
         </h1>
+        <hr
+          className="border-t-1 border-gray-200 mb-8"
+          style={{ width: "100%" }}
+        />
 
         <section className="prose prose-lg">
           <h2>Cookie Policy</h2>
