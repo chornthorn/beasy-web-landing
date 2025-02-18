@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -6,6 +6,9 @@ import { useLanguage } from "../../contexts/LanguageContext";
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   const { scrollY } = useScroll();
   const { currentLang, setLanguage, t } = useLanguage();
 
@@ -14,6 +17,25 @@ const Header: React.FC = () => {
     [0, 100],
     ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.7)"]
   );
+
+  // Handle scroll direction
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+      const scrollDifference = Math.abs(currentScrollY - lastScrollY);
+
+      // Only trigger hide/show if scroll difference is significant
+      if (scrollDifference > 10) {
+        setIsVisible(!scrollingDown || currentScrollY < 100);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const navItems = [
     { name: t("nav.about"), href: "/about" },
@@ -40,7 +62,6 @@ const Header: React.FC = () => {
     setIsLangOpen(false);
   };
 
-  // Function to get font weight class based on language
   const getNavItemClass = () => {
     const baseClasses =
       "text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] tracking-wide";
@@ -54,7 +75,14 @@ const Header: React.FC = () => {
       style={{
         backgroundColor,
       }}
-      className="sticky top-0 z-50 shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] backdrop-blur-md"
+      animate={{
+        y: isVisible ? 0 : -100,
+      }}
+      transition={{
+        duration: 0.3,
+        ease: "easeInOut",
+      }}
+      className="fixed w-full top-0 z-50 shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] backdrop-blur-md"
     >
       <nav className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
