@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const backgroundColor = useTransform(
     scrollY,
     [0, 100],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.98)"]
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.7)"]
   );
 
   const navItems = [
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
       style={{
         backgroundColor,
       }}
-      className="sticky top-0 z-50 shadow-[0_1px_2px_0_rgba(0,0,0,0.05)]"
+      className="sticky top-0 z-50 shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] backdrop-blur-md"
     >
       <nav className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
