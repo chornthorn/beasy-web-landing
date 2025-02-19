@@ -110,7 +110,7 @@ const BlogDetail: React.FC = () => {
       <main>
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-br from-[#ff6b4a]/5 via-white to-[#ff3e3e]/5">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center space-x-4 mb-6">
                 <span className="text-sm text-[#ff6b4a]">{post.category}</span>

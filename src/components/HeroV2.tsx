@@ -153,7 +153,7 @@ const HeroV2: React.FC = () => {
             {/* Main Image */}
             <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800"
                 alt="Technology Innovation"
                 className="w-full h-full object-cover"
               />
