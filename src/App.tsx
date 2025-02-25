@@ -6,6 +6,7 @@ import BEasyHero from "./components/BEasyHero";
 import BEasyServices from "./components/BEasyServices";
 import BEasyAbout from "./components/BEasyAbout";
 import BEasyFeatures from "./components/BEasyFeatures";
+import BEasyMobileShowcase from "./components/BEasyMobileShowcase";
 import BEasyDownload from "./components/BEasyDownload";
 import BEasyContact from "./components/BEasyContact";
 
@@ -24,6 +25,9 @@ function App() {
           </div>
           <div id="features">
             <BEasyFeatures />
+          </div>
+          <div id="mobile">
+            <BEasyMobileShowcase />
           </div>
           <div id="download">
             <BEasyDownload />
