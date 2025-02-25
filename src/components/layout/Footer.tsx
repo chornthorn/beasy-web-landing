@@ -1,37 +1,6 @@
 import React from "react";
 
 const Footer: React.FC = () => {
-  const navigation = {
-    company: [
-      { name: "About", href: "#about" },
-      { name: "Services", href: "#services" },
-      { name: "Features", href: "#features" },
-      { name: "Download", href: "#download" },
-      { name: "Contact", href: "#contact" },
-    ],
-    services: [
-      { name: "Home Cleaning", href: "#cleaning" },
-      { name: "Home Maintenance", href: "#maintenance" },
-      { name: "Landscaping", href: "#landscaping" },
-      { name: "Handyman Services", href: "#handyman" },
-      { name: "Pest Control", href: "#pest-control" },
-    ],
-    support: [
-      { name: "Help Center", href: "#help" },
-      { name: "FAQs", href: "#faqs" },
-      { name: "Service Providers", href: "#providers" },
-      { name: "Careers", href: "#careers" },
-      { name: "Partners", href: "#partners" },
-    ],
-    legal: [
-      { name: "Privacy Policy", href: "#privacy" },
-      { name: "Terms of Service", href: "#terms" },
-      { name: "Cookie Policy", href: "#cookies" },
-      { name: "GDPR", href: "#gdpr" },
-      { name: "Contact", href: "#contact" },
-    ],
-  };
-
   const socialLinks = [
     {
       name: "LinkedIn",
@@ -73,117 +42,36 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-white border-t border-gray-200">
-      <div className="max-w-7xl mx-auto pt-16 pb-8 px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="xl:grid xl:grid-cols-5 xl:gap-8">
-          {/* Brand Column */}
-          <div className="xl:col-span-1 space-y-8">
-            <a href="#" className="block">
-              <div className="flex items-center">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#4CAF50] to-[#8BC34A] rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  b
-                </div>
-                <span className="ml-2 text-2xl font-bold text-gray-900">
-                  bEasy
-                </span>
-              </div>
-            </a>
-            <p className="text-gray-600 text-sm">
-              Transforming the way people access and manage household services.
-              Your one-stop solution for all home service needs.
+      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center mb-4 md:mb-0">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#4CAF50] to-[#8BC34A] rounded-lg flex items-center justify-center text-white font-bold text-xl">
+              b
+            </div>
+            <span className="ml-2 text-xl font-bold text-gray-900">bEasy</span>
+          </div>
+
+          {/* Copyright */}
+          <div className="mb-4 md:mb-0 order-3 md:order-2">
+            <p className="text-sm text-gray-500">
+              © 2025 bEasy Services. All rights reserved.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-400 hover:text-[#4CAF50] transition-colors duration-300"
-                >
-                  <span className="sr-only">{item.name}</span>
-                  {item.icon}
-                </a>
-              ))}
-            </div>
           </div>
 
-          {/* Navigation Columns */}
-          <div className="mt-12 xl:mt-0 xl:col-span-4 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase">
-                Company
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {navigation.company.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-gray-600 hover:text-[#4CAF50] transition-colors duration-300"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase">
-                Services
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {navigation.services.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-gray-600 hover:text-[#4CAF50] transition-colors duration-300"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase">
-                Support
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {navigation.support.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-gray-600 hover:text-[#4CAF50] transition-colors duration-300"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase">
-                Legal
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {navigation.legal.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-gray-600 hover:text-[#4CAF50] transition-colors duration-300"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Social Links */}
+          <div className="flex space-x-6 order-2 md:order-3">
+            {socialLinks.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-400 hover:text-[#4CAF50] transition-colors duration-300"
+                aria-label={item.name}
+              >
+                {item.icon}
+              </a>
+            ))}
           </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
-          <p className="text-sm text-gray-400 text-center">
-            © {new Date().getFullYear()} bEasy Services. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>
