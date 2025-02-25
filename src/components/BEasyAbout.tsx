@@ -1,14 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const About: React.FC = () => {
+const BEasyAbout: React.FC = () => {
   const features = [
     {
       title: "Our Mission",
       description:
-        "We are committed to helping our clients achieve success through innovative technology solutions tailored to their specific needs.",
+        "We are committed to transforming the way people access and manage household services by providing a seamless connection between customers and qualified service providers.",
       icon: (
-        <div className="w-12 h-12 bg-[#ff6b4a]/10 rounded-xl flex items-center justify-center text-[#ff6b4a] transition-colors duration-300 group-hover:bg-[#ff6b4a]/20">
+        <div className="w-12 h-12 bg-[#4CAF50]/10 rounded-xl flex items-center justify-center text-[#4CAF50] transition-colors duration-300 group-hover:bg-[#4CAF50]/20">
           <svg
             className="w-6 h-6"
             fill="none"
@@ -26,9 +26,9 @@ const About: React.FC = () => {
       ),
     },
     {
-      title: "Our Expertise",
+      title: "Our Approach",
       description:
-        "From messaging applications to online platforms, we deliver scalable, secure solutions that enhance operational efficiency.",
+        "By leveraging modern technology and prioritizing user experience, bEasy delivers convenience, reliability, and quality right at the fingertips of our users.",
       icon: (
         <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500 transition-colors duration-300 group-hover:bg-blue-500/20">
           <svg
@@ -48,9 +48,9 @@ const About: React.FC = () => {
       ),
     },
     {
-      title: "Our Approach",
+      title: "Our Vision",
       description:
-        "We believe in building long-term partnerships, focusing on delivering measurable value and continuous support to our clients.",
+        "To be the one-stop solution for all home service needs, making everyday life easier and more efficient for our customers while creating opportunities for service providers.",
       icon: (
         <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-500 transition-colors duration-300 group-hover:bg-purple-500/20">
           <svg
@@ -72,14 +72,14 @@ const About: React.FC = () => {
   ];
 
   const stats = [
-    { number: "15+", label: "Years Experience" },
-    { number: "200+", label: "Projects Delivered" },
-    { number: "50+", label: "Expert Team Members" },
-    { number: "98%", label: "Client Satisfaction" },
+    { number: "100+", label: "Service Types" },
+    { number: "1000+", label: "Service Providers" },
+    { number: "50,000+", label: "Completed Jobs" },
+    { number: "98%", label: "Customer Satisfaction" },
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section id="about" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.h2
@@ -89,7 +89,7 @@ const About: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="text-4xl font-bold text-gray-900 mb-6"
           >
-            About Suntel Technology
+            About bEasy
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -98,8 +98,8 @@ const About: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-xl text-gray-600"
           >
-            Building the foundation for your future success through innovative
-            technology solutions
+            Transforming the way people access and manage household services in
+            today's fast-paced world
           </motion.p>
         </div>
 
@@ -143,7 +143,7 @@ const About: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent mb-2">
+              <div className="text-4xl font-bold bg-gradient-to-r from-[#4CAF50] to-[#8BC34A] bg-clip-text text-transparent mb-2">
                 {stat.number}
               </div>
               <div className="text-gray-600">{stat.label}</div>
@@ -155,4 +155,4 @@ const About: React.FC = () => {
   );
 };
 
-export default About;
+export default BEasyAbout;

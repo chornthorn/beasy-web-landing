@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "../../contexts/LanguageContext";
-import MobileMenu from "./MobileMenu";
-import HeaderActions from "./HeaderActions";
-import DesktopNavigation from "./DesktopNavigation";
-import productCategories from "../../data/productCategories";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLangOpen, setIsLangOpen] = useState(false);
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -42,10 +35,12 @@ const Header: React.FC = () => {
   }, [lastScrollY]);
 
   const navItems = [
-    { name: t("nav.about"), href: "/about" },
-    { name: t("nav.blog"), href: "/blog" },
-    { name: t("nav.portfolio"), href: "/portfolio" },
-    { name: "Career", href: "/career" },
+    { name: "Home", href: "#" },
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Features", href: "#features" },
+    { name: "Download", href: "#download" },
+    { name: "Contact", href: "#contact" },
   ];
 
   const languages = {
@@ -61,12 +56,11 @@ const Header: React.FC = () => {
 
   const handleLanguageChange = (lang: "en" | "kh") => {
     setLanguage(lang);
-    setIsLangOpen(false);
   };
 
   const getNavItemClass = () => {
     const baseClasses =
-      "text-gray-900 hover:text-[#ff6b4a] transition-colors duration-300 text-[15px] tracking-wide";
+      "text-gray-900 hover:text-[#4CAF50] transition-colors duration-300 text-[15px] tracking-wide";
     return currentLang === "kh"
       ? `${baseClasses} font-bold`
       : `${baseClasses} font-medium`;
@@ -92,32 +86,59 @@ const Header: React.FC = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <motion.div whileHover={{ scale: 1.05 }}>
-                <Link to="/" className="block">
-                  <img
-                    src="https://suntel.io/images/uploads/home_logo/20241220073110.png"
-                    alt="Suntel Technology"
-                    className="h-8 w-auto"
-                  />
-                </Link>
+                <a href="#" className="block">
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-[#4CAF50] to-[#8BC34A] rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                      b
+                    </div>
+                    <span className="ml-2 text-2xl font-bold text-gray-900">
+                      bEasy
+                    </span>
+                  </div>
+                </a>
               </motion.div>
             </div>
 
             {/* Desktop Navigation */}
-            <DesktopNavigation
-              isMegaMenuOpen={isMegaMenuOpen}
-              setIsMegaMenuOpen={setIsMegaMenuOpen}
-              productCategories={productCategories}
-              navItems={navItems}
-              getNavItemClass={getNavItemClass}
-            />
+            <div className="hidden md:flex md:items-center md:space-x-8">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={getNavItemClass()}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
 
-            {/* Header Actions (Contact Button & Language Switcher) */}
-            <HeaderActions
-              isLangOpen={isLangOpen}
-              setIsLangOpen={setIsLangOpen}
-              languages={languages}
-              handleLanguageChange={handleLanguageChange}
-            />
+            {/* Language Switcher & Contact Button */}
+            <div className="hidden md:flex md:items-center md:space-x-4">
+              {/* Language Switcher */}
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    setLanguage(currentLang === "en" ? "kh" : "en");
+                  }}
+                  className="flex items-center space-x-1 text-gray-700 hover:text-[#4CAF50] transition-colors duration-300"
+                >
+                  <span className="text-lg">
+                    {languages[currentLang as keyof typeof languages].flag}
+                  </span>
+                  <span className="text-sm font-medium">
+                    {languages[currentLang as keyof typeof languages].name}
+                  </span>
+                </button>
+              </div>
+
+              {/* Contact Button */}
+              <a
+                href="#contact"
+                className="px-6 py-2.5 bg-gradient-to-r from-[#4CAF50] to-[#8BC34A] text-white rounded-full font-medium text-sm hover:from-[#8BC34A] hover:to-[#4CAF50] transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                Contact Us
+              </a>
+            </div>
 
             {/* Mobile menu button */}
             <div className="md:hidden">
@@ -153,25 +174,51 @@ const Header: React.FC = () => {
           </div>
 
           {/* Mobile Menu */}
-          <MobileMenu
-            isOpen={isOpen}
-            isMegaMenuOpen={isMegaMenuOpen}
-            setIsMegaMenuOpen={setIsMegaMenuOpen}
-            productCategories={productCategories}
-            navItems={navItems}
-            languages={languages}
-            handleLanguageChange={handleLanguageChange}
-          />
+          {isOpen && (
+            <div className="md:hidden py-4 border-t border-gray-100">
+              <div className="flex flex-col space-y-4">
+                {navItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={getNavItemClass()}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+
+                {/* Language Switcher */}
+                <div className="pt-2 border-t border-gray-100">
+                  <button
+                    onClick={() => {
+                      setLanguage(currentLang === "en" ? "kh" : "en");
+                      setIsOpen(false);
+                    }}
+                    className="flex items-center space-x-1 text-gray-700 hover:text-[#4CAF50] transition-colors duration-300"
+                  >
+                    <span className="text-lg">
+                      {languages[currentLang as keyof typeof languages].flag}
+                    </span>
+                    <span className="text-sm font-medium">
+                      {languages[currentLang as keyof typeof languages].name}
+                    </span>
+                  </button>
+                </div>
+
+                {/* Contact Button */}
+                <a
+                  href="#contact"
+                  onClick={() => setIsOpen(false)}
+                  className="px-6 py-2.5 bg-gradient-to-r from-[#4CAF50] to-[#8BC34A] text-white rounded-full font-medium text-sm hover:from-[#8BC34A] hover:to-[#4CAF50] transition-all duration-300 shadow-sm hover:shadow-md inline-block text-center"
+                >
+                  Contact Us
+                </a>
+              </div>
+            </div>
+          )}
         </nav>
       </motion.header>
-
-      {/* Overlay for mega menu */}
-      {isMegaMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/20 z-[90]"
-          onClick={() => setIsMegaMenuOpen(false)}
-        />
-      )}
     </>
   );
 };

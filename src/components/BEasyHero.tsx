@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const HeroV2: React.FC = () => {
+const BEasyHero: React.FC = () => {
   // Animation variants for floating effect
   const floatingAnimation = {
     initial: { y: 0 },
@@ -40,7 +40,7 @@ const HeroV2: React.FC = () => {
             opacity: 0.1,
             transition: { duration: 2, ease: "easeOut" },
           }}
-          className="absolute right-0 top-0 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-[#ff6b4a]/30 to-[#ff3e3e]/30 blur-3xl"
+          className="absolute right-0 top-0 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-[#4CAF50]/30 to-[#8BC34A]/30 blur-3xl"
         />
 
         {/* Animated Shapes */}
@@ -50,7 +50,7 @@ const HeroV2: React.FC = () => {
             initial="initial"
             animate="animate"
             variants={shapeAnimation}
-            className="absolute bg-gradient-to-br from-[#ff6b4a] to-[#ff3e3e] rounded-full opacity-30"
+            className="absolute bg-gradient-to-br from-[#4CAF50] to-[#8BC34A] rounded-full opacity-30"
             style={{
               width: Math.random() * 100 + 50,
               height: Math.random() * 100 + 50,
@@ -73,10 +73,10 @@ const HeroV2: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center px-6 py-2 rounded-full bg-gradient-to-r from-[#ff6b4a]/10 to-[#ff3e3e]/10"
+              className="inline-flex items-center px-6 py-2 rounded-full bg-gradient-to-r from-[#4CAF50]/10 to-[#8BC34A]/10"
             >
-              <span className="text-sm font-semibold bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent">
-                Welcome to Suntel Technology
+              <span className="text-sm font-semibold bg-gradient-to-r from-[#4CAF50] to-[#8BC34A] bg-clip-text text-transparent">
+                Home Services Made Easy
               </span>
             </motion.div>
 
@@ -88,9 +88,9 @@ const HeroV2: React.FC = () => {
               className="space-y-4"
             >
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900">
-                Transform Your Business with{" "}
-                <span className="bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent">
-                  Innovation
+                Your Home Services{" "}
+                <span className="bg-gradient-to-r from-[#4CAF50] to-[#8BC34A] bg-clip-text text-transparent">
+                  At Your Fingertips
                 </span>
               </h1>
             </motion.div>
@@ -102,9 +102,9 @@ const HeroV2: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-xl text-gray-600 max-w-lg"
             >
-              We deliver cutting-edge solutions that drive growth, streamline
-              operations, and secure your digital future. Partner with us to
-              bring your vision to life.
+              bEasy connects you with qualified, vetted service providers for
+              all your home needs. From cleaning to maintenance, get reliable
+              assistance with just a few taps.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -114,8 +114,8 @@ const HeroV2: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <button className="px-8 py-4 bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] text-white rounded-full font-medium text-lg hover:from-[#ff3e3e] hover:to-[#ff6b4a] transition-all duration-300 shadow-lg hover:shadow-xl">
-                Get Started
+              <button className="px-8 py-4 bg-gradient-to-r from-[#4CAF50] to-[#8BC34A] text-white rounded-full font-medium text-lg hover:from-[#8BC34A] hover:to-[#4CAF50] transition-all duration-300 shadow-lg hover:shadow-xl">
+                Download App
               </button>
               <button className="px-8 py-4 bg-white text-gray-900 rounded-full font-medium text-lg border-2 border-gray-200 hover:border-gray-300 transition-all duration-300">
                 Learn More
@@ -130,11 +130,11 @@ const HeroV2: React.FC = () => {
               className="grid grid-cols-2 gap-8 pt-8"
             >
               {[
-                { number: "15+", label: "Years Experience" },
-                { number: "200+", label: "Projects Delivered" },
+                { number: "1000+", label: "Service Providers" },
+                { number: "50,000+", label: "Happy Customers" },
               ].map((stat, index) => (
                 <div key={index} className="text-left">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-[#ff6b4a] to-[#ff3e3e] bg-clip-text text-transparent mb-1">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-[#4CAF50] to-[#8BC34A] bg-clip-text text-transparent mb-1">
                     {stat.number}
                   </div>
                   <div className="text-gray-600 text-sm">{stat.label}</div>
@@ -143,7 +143,7 @@ const HeroV2: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Right Column - Image */}
+          {/* Right Column - App Mockup */}
           <motion.div
             initial="initial"
             animate="animate"
@@ -153,8 +153,8 @@ const HeroV2: React.FC = () => {
             {/* Main Image */}
             <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800"
-                alt="Technology Innovation"
+                src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800"
+                alt="bEasy Mobile App"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -164,14 +164,14 @@ const HeroV2: React.FC = () => {
                 rotate: [0, 360],
                 transition: { duration: 20, repeat: Infinity, ease: "linear" },
               }}
-              className="absolute top-10 right-10 w-20 h-20 border-4 border-[#ff6b4a]/20 rounded-full"
+              className="absolute top-10 right-10 w-20 h-20 border-4 border-[#4CAF50]/20 rounded-full"
             />
             <motion.div
               animate={{
                 rotate: [360, 0],
                 transition: { duration: 15, repeat: Infinity, ease: "linear" },
               }}
-              className="absolute bottom-10 left-10 w-32 h-32 border-4 border-[#ff3e3e]/20 rounded-full"
+              className="absolute bottom-10 left-10 w-32 h-32 border-4 border-[#8BC34A]/20 rounded-full"
             />
           </motion.div>
         </div>
@@ -180,4 +180,4 @@ const HeroV2: React.FC = () => {
   );
 };
 
-export default HeroV2;
+export default BEasyHero;
